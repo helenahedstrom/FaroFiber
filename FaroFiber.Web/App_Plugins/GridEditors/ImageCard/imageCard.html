@@ -1,0 +1,33 @@
+﻿<div class="cm-editor" ng-controller="imageCard">
+    <!--<h3>Image module</h3>
+    <p>Used for displaying image, title and teaser from a page, for example customer references. Choose Flexible pages.</p>
+    MEDIA PICKER
+    <div class="cm-property-wrap">
+        <div class="cm-property">
+            <label class="inline">References:</label>
+
+            <a href="javascript:void(0);" ng-click="selectContent()">
+                <i class="icon icon-axis-rotation-2"></i>
+            </a>
+            <ul>
+                <li ng-repeat=" t in control.card.list">{{ t.name }}</li>
+            </ul>
+            <p>{{control.card}}</p>
+            <a href="javascript:void(0);" ng-click="resetContent()">Reset content</a>
+        </div>
+
+    </div>-->
+    <!--LINK PICKER-->
+    <div class="cm-property-wrap">
+
+        <div class="cm-property">
+            <label class="inline">Länk:</label>
+
+            <a href="javascript:void(0);" ng-click="selectLink()">
+                <i class="icon icon-link"></i>
+                <span ng-if="control.card.link.name">{{control.card.link.name}}</span>
+            </a>
+        </div>
+
+    </div>
+    </div>

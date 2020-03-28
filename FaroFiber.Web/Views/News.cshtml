@@ -1,0 +1,12 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<FaroFiber.Core.Models.GeneratedModels.News>
+@{
+	Layout = "~/Views/_Layout.cshtml";
+}
+<div class="container">
+	@{ Html.RenderPartial("~/Views/Partials/Layout/_LeftNav.cshtml");}
+
+	<main role="main">
+		@RenderHelper.Header(Model)
+		@Model.ContentMiddle
+	</main>
+</div>

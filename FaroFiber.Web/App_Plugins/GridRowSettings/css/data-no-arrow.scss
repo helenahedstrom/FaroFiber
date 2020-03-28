@@ -1,0 +1,13 @@
+﻿[data-no-arrow=True] {
+    * a {
+        margin-left: 0;
+
+        &:before {
+            content: none;
+        }
+    }
+
+    &:before {
+        content: none;
+    }
+}

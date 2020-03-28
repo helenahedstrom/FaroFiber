@@ -1,0 +1,37 @@
+﻿@model FaroFiber.Core.Models.ContentModels.NewsListContentModel
+@using System.Web.Mvc.Html
+@{
+	Layout = "~/Views/_Layout.cshtml";
+}
+
+<div class="container two-col">
+	@{ Html.RenderPartial("~/Views/Partials/Layout/_LeftNav.cshtml");}
+
+	<main role="main">
+		@RenderHelper.Header(Model.Content)
+
+		@foreach (var news in Model.ViewModel.CurrentPageItems)
+		{
+			<a href="@news.Url" class="news-item">
+				<h3 class="news-item__header">@news.Name</h3>
+				<p class="news-item__date">@news.CreateDate</p>
+				<p class="news-item__teaser">@news.Teaser</p>
+				<p class="news-item__read-more">Läs mer</p>
+			</a>
+		}
+
+		@{
+			if (Model.ViewModel.AmountOfPages > 1)
+			{
+				<div class="news-pagination">
+					@for (var i = 0; i < Model.ViewModel.AmountOfPages; i++)
+					{
+						var pageNumber = i + 1;
+						var activeClass = pageNumber == Model.ViewModel.CurrentPageNumber ? "news-pagination__link--is-active" : string.Empty;
+						<a href="?skip=@(i*Model.ViewModel.Take)" class="news-pagination__link @activeClass">@pageNumber</a>
+					}
+				</div>
+			}
+		}
+	</main>
+</div>

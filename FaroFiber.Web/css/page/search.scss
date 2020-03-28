@@ -1,0 +1,36 @@
+﻿.page-search {
+	#main-content-wrapper {
+		> .container {
+			width: $smallContainerWidth;
+		}
+	}
+}
+
+
+/* ------------------------------------------------------------ */
+// SEARCH RESULT
+.search-result {
+	margin-bottom: 1em;
+	display: block;
+	border-bottom: 1px solid #f1f1f1;
+	padding: 1em 0 1em;
+	color: #222;
+
+	h3 {
+		margin: 0;
+	}
+}
+
+.search-result:last-of-type {
+	border-bottom: none;
+}
+
+.search-result__teaser {
+	margin: 0;
+}
+
+
+/* Pulsera sökens "Visa fler resultat"-knapp när det laddar för att ge användaren någon respons om det skulle ta lång tid */
+.load-more-results--is-loading {
+	@extend %pulsate;
+}

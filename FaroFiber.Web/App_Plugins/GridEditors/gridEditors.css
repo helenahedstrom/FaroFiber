@@ -1,0 +1,94 @@
+﻿bo.cm-editor {
+    padding: 1em;
+    background-color: #f7f9ff;
+    position: relative;
+}
+
+.cm-editor h3 {
+    font-size: 20px;
+}
+
+.cm-editor a {
+    color: #03bfb3;
+}
+
+.cm-editor .umb-editor.tb-editor {
+    margin: 0.2em 0;
+}
+
+.cm-property-wrap {
+    padding: 1em;
+    position: relative;
+}
+
+    .cm-property-wrap .cm-property {
+        padding: 0.5em;
+        border: 1px solid #f1f1f1;
+    }
+
+    .cm-property-wrap .cm-property-2-column {
+        padding: 0.5em;
+        border: 1px solid #f1f1f1;
+        width: 49%;
+        display: inline-block;
+    }
+
+    .cm-property-wrap label {
+        display: block;
+        font-weight: bold;
+    }
+
+    .cm-property-wrap input[type='text'] {
+        max-width: 100%;
+        width: 650px;
+        display: block;
+        border: 1px solid #f1f1f1;
+    }
+
+    .cm-property-wrap textarea {
+        max-width: 100%;
+        width: 650px;
+    }
+
+    .cm-property-wrap .sub-property {
+        margin: 10px 0;
+    }
+
+        .cm-property-wrap .sub-property img,
+        .cm-property-wrap .sub-property a {
+            margin: 0;
+        }
+
+    .cm-property-wrap .custom-control,
+    .cm-property-wrap .umb-editor {
+        position: relative;
+    }
+
+    .cm-property-wrap .mce-edit-area iframe {
+        border: 1px solid #f1f1f1;
+        min-height: 100px !important;
+    }
+
+    .cm-property-wrap .mce-btn {
+        background: #fafafa;
+    }
+
+    .cm-property-wrap input[type='checkbox'],
+    .inline {
+        display: inline !important;
+    }
+
+    .cm-property-wrap input[type='checkbox'],
+    .cm-property-wrap a,
+    .cm-property-wrap img {
+        margin-left: 0.5em;
+    }
+
+.cm-property img {
+    max-width: 80px;
+    background: #f1f1f1;
+}
+
+.umb-grid .camelonta-property-wrap .mce-panel {
+    border: 1px solid #f1f1f1 !important;
+}

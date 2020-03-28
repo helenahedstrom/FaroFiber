@@ -1,0 +1,38 @@
+﻿@using FaroFiber.Core.Models.ViewModels
+@inherits UmbracoViewPage<FaroFiber.Core.Models.GeneratedModels.ILayout>
+@{
+
+    var viewModel = new HeroViewModel(Model);
+}
+
+@if (viewModel.Hero != null)
+{
+    <div id="hero">
+        @if (!string.IsNullOrEmpty(viewModel.Hero.Text))
+        {
+            <div class="container">
+                <div class="content">
+                    @Html.Raw(viewModel.Hero.Text)
+                </div>
+            </div>
+        }
+    </div>
+    <style>
+ 			#hero { background-image: url(@ImageUrl(Model.HeroImage, 1800, 700)) }
+
+            @@media screen and (max-width: 1200px) {#hero { background-image: url(@ImageUrl(Model.HeroImage, 1600, 1200)); }}
+
+ 			@@media screen and (max-width: 800px) and (orientation: portrait) {#hero { background-image: url(@ImageUrl(Model.HeroImage, 1200, 1500)); }}
+
+            @@media screen and (max-width: 500px) {#hero { background-image: url(@ImageUrl(Model.HeroImage, 1000, 1000)); }}
+    </style>
+}
+
+@functions {
+
+    HtmlString ImageUrl(IPublishedContent heroImage, int width, int height = 700)
+    {
+        return new HtmlString(heroImage.GetCropUrl(width, height));
+    }
+}
+

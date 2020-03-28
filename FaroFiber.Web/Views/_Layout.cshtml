@@ -1,0 +1,90 @@
+﻿@using System.Web.Optimization
+@using FaroFiber.Core.Classes
+@using FaroFiber.Core.Models.ViewModels
+@inherits UmbracoViewPage<FaroFiber.Core.Models.GeneratedModels.ILayout>
+@{
+	var viewModel = new LayoutViewModel(Model);
+}
+
+<!doctype html>
+<html lang="@UmbracoContext.PublishedRequest.Culture.TwoLetterISOLanguageName" class="no-js">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>@Meta.PageTitle(Model) - FaroFiber</title>
+    <meta name="description" content="@Model.MetaDescription">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="@Meta.RobotsContent(Model)" />
+
+    @* TODO: Skapa den default-delningsbild för sociala medier. Meta.PageMainImage har en fallback till den. Kolla gärna camelonta.se*@
+    <meta property="og:image" content="@viewModel.CurrentSite.Url(null, UrlMode.Absolute)@Meta.PageMainImage(Model)">
+    <meta property="og:title" content="@Meta.PageTitle(Model)">
+    <meta property="og:url" content="@Model.Url(null, UrlMode.Absolute)">
+    <meta property="og:description" content="@Meta.PageTeaser(Model, 500)">
+    <meta property="og:site_name" content="@viewModel.CurrentSite.Name" />
+
+    @* Fastest way to change "no-js" class to "js" on <html>. This makes sure we don't get the content jump/glitch when styling for .no-js *@
+    <script>(function (e, t, n) { var r = e.querySelectorAll("html")[0]; r.className = r.className.replace(/(^|\s)no-js(\s|$)/, "$1js$2") })(document, window, 0);</script>
+
+    @{ Html.RenderPartial("~/Views/Partials/_Favicons.cshtml");}
+
+    @Styles.Render("~/bundles/styles")
+
+    <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
+
+    <!--[if lt IE 9]>
+        <script src="@Scripts.Url("~/bundles/ltIe9Scripts")"></script>
+    <![endif]-->
+</head>
+<body class="@BodyClasses()" itemscope itemtype="http://schema.org/WebPage" data-current-node="@Model.Id">
+
+	<header role="banner">
+        <div class="header__container container">
+            <a href="@viewModel.CurrentSite.Url" class="header__logo">
+               <img class="header__logo-img" src="~/img/logo.jpg"/>
+            </a>
+
+            <a href="javascript:void(0)" class="mobile-menu-toggle"><i class="icon-menu"></i>meny</a>
+            @{ Html.RenderPartial("~/Views/Partials/_MainNav.cshtml");}
+
+            @if (Model.ContentType.Alias != "Search")
+            {
+                <div class="header__search">
+                    @{Html.RenderPartial("~/Views/Partials/_SearchForm.cshtml", viewModel);}
+                </div>
+            }
+
+        </div>
+	</header>
+
+	@{ Html.RenderPartial("~/Views/Partials/Layout/_Hero.cshtml");}
+
+	<div id="main-content-wrapper">
+		@RenderBody()
+	</div>
+
+	@{ Html.RenderPartial("~/Views/Partials/Layout/_Footer.cshtml", viewModel);}
+
+	@* All site scripts. If NOT debug (if live): set attribute "async" *@
+	@Scripts.RenderFormat($"<script src=\"{{0}}\" {(HttpContext.Current.IsDebuggingEnabled ? "" : " async")}></script>", "~/bundles/scripts")
+
+	@if (!string.IsNullOrEmpty(viewModel.CurrentSite.ScriptOnAllPages))
+	{
+		@Html.Raw(viewModel.CurrentSite.ScriptOnAllPages)
+	}
+
+	@if (!string.IsNullOrEmpty(Model.PageScript))
+	{
+		@Html.Raw(Model.PageScript)
+	}
+</body>
+</html>
+
+@functions{
+
+	string BodyClasses()
+	{
+		return $"page-{Model.ContentType.Alias.ToLower()}"; ;
+	}
+}

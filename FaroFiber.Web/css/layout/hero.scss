@@ -1,0 +1,28 @@
+﻿#hero {
+    background-size: cover;
+    background-repeat: no-repeat;
+    max-height: 80vh;
+    height: 450px;
+    display: table;
+    width: 100%;
+
+    > .container {
+        display: table-cell;
+        vertical-align: middle;
+    }
+
+    h1, h2 {
+        font-size: 3.411764705882353em;
+        margin-bottom: 1.2em;
+    }
+
+    h3 {
+        font-size: 1.8823529411764706em;
+    }
+
+    @media screen and (max-width: 800px) {
+        min-height: 450px;
+        height: auto;
+        font-size: .8em;
+    }
+}

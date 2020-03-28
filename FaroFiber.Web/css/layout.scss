@@ -1,0 +1,321 @@
+﻿/// <reference path="mixins/flexbox.scss"/>
+
+.container {
+    max-width: 100%;
+    width: $default-container-width;
+    margin: 0 auto;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.grid-section a {
+    font-weight: bold;
+    color: #670067;
+}
+
+/*-------------------------------------*/
+// HEADER
+header {
+    background: white;
+    padding: 15px 0;
+    box-shadow: 0px -8px 22px $black;
+    z-index: 500;
+}
+
+@media screen and (min-width: $mobile-threshold) {
+    .header__container {
+        display: flex;
+        flex-direction: row;
+    }
+}
+
+
+.header__logo-img{
+    width: 65px;
+}
+
+.header__search {
+    float: right;
+    padding: 1em;
+
+    .search-form__input{
+        border-radius: 50px;
+    }
+    
+    button {
+        font-size: 1.15em;
+    }
+
+    @media screen and (max-width: $mobile-threshold) {
+        display: none;
+    }
+}
+
+
+/*-------------------------------------*/
+// LEFT SIDEBAR
+#l-sidebar {
+    width: 22%;
+    margin-right: 3%;
+    float: left;
+    min-height: 1px; /* If we don't have any pages in left-nav - still show container*/
+}
+
+
+
+/*-------------------------------------*/
+// RIGHT SIDEBAR
+aside {
+    margin-top: 20px;
+    float: right;
+    font-size: .8em;
+    width: 24%;
+    margin-left: 3%;
+    border-top: 20px solid $gray;
+
+    .aside-content__block {
+        background-size: cover;
+        display: inline-block;
+        width: 100%;
+
+        .aside-content_inner {
+            margin: 1em;
+        }
+    }
+}
+
+
+
+/*-------------------------------------*/
+// FOOTER
+footer {
+    background: $blue-light;
+    border-top: 20px solid #eaebea;
+    color: white;
+    padding: 20px 0 80px;
+    margin-top: 90px;
+
+    p {
+        margin: 3px 0;
+    }
+}
+
+
+/*-------------------------------------*/
+// MAIN CONTENT
+#main-content-wrapper {
+    @include flex(1,0);
+}
+
+main {
+    overflow: hidden;
+    min-height: 20vh;
+}
+
+.grid-section > div {
+    background-position: center; /* center background images in grid sections */
+    margin: 1em 0;
+}
+
+.one-col {
+    width: $smallContainerWidth;
+}
+
+.two-col {
+    width: $mediumContainerWidth;
+}
+
+/*-------------------------------------*/
+// MEDIA QUERIES
+
+.section {
+    background-color: #aa0052;
+}
+
+.muted-section {
+    background-color: #eaebea;
+}
+
+@media only screen and (max-width: $laptopwidth) {
+    body {
+        font-size: 14px;
+    }
+
+    .container {
+        width: $mediumContainerWidth;
+    }
+}
+
+@media only screen and (max-width: 990px) {
+    .umb-grid .column {
+        margin-top: 15px;
+        margin-bottom: 15px;
+    }
+}
+
+@media only screen and (max-width: 800px) {
+    aside {
+        width: 75%;
+        display: none;
+    }
+}
+
+
+@media only screen and (max-width: 767px) {
+    main,
+    aside {
+        width: 100%;
+    }
+
+    #l-sidebar {
+        display: none;
+    }
+}
+
+
+
+/* 
+    Sticky footer: http://tutorialzine.com/2016/03/quick-tip-the-best-way-to-make-sticky-footers/ VID TID: Detta funkar inte bra i IE. Det blir problem med bilder + max-width (containern behåller initiala höjden)
+        - Force the footer to always be at the bottom of the page
+*/
+
+.login-wrapper {
+    width: 100%;
+    height: 100vh;
+    background-color: #3c2046;
+    font-size: 18px;
+    font-family: Poppins;
+}
+
+.login-wrapper fieldset {
+    border: 0;
+}
+
+.login-wrapper .login-container {
+    position: absolute;
+    width: 540px;
+    top: 44%;
+    left: 50%;
+    margin: -112px 0 0 -270px;
+    background: #fff;
+    padding: 20px 30px;
+}
+
+.login-wrapper img {
+    width: 300px;
+    margin: auto;
+    display: block;
+    position: relative;
+    top: -80px;
+}
+
+.login-wrapper form {
+    /*margin-top: -38px;*/
+}
+
+.login-wrapper form legend {
+    color: #005260;
+    font-size: 32px;
+    margin-bottom: 1em;
+    text-align: center;
+    font-family: 'Proxima Nova-Semibold';
+}
+
+.login-wrapper .form-group label {
+    width: 36%;
+    display: inline-block;
+    margin: 8px 0;
+}
+
+.login-wrapper .form-group input[type=text], .form-group input[type=password] {
+    height: 38px;
+    padding: 8px;
+    width: 60%;
+}
+
+.login-wrapper form input[type=checkbox] {
+    cursor: pointer;
+    margin: 0;
+    -webkit-transform: scale(1.5);
+    -moz-transform: scale(1.5);
+    -ms-transform: scale(1.5);
+    -o-transform: scale(1.5);
+    transform: scale(1.5);
+    vertical-align: middle;
+}
+
+.login-wrapper form input[type=submit] {
+    font-family: 'Proxima Nova-Semibold';
+    background-color: #92297b;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 100%;
+    padding: 0.5em 1em;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+    white-space: nowrap;
+    font-size: 20px;
+    float: right;
+    position: relative;
+    right: 3%;
+}
+
+.heading__link {
+    font-size: 40px;
+    color: #1a3868;
+}
+
+.login-wrapper .login-container .reset-password-container #reset-password-form.hidden {
+    display: none;
+}
+
+.login-wrapper .login-container .reset-password-container .resetForm {
+    background: #efefef;
+    padding: 30px;
+    margin-left: -30px;
+    margin-right: -30px;
+    margin-bottom: -20px;
+}
+
+.login-wrapper .login-container .reset-password-container .resetForm input[type=text] {
+    margin-bottom: 0.5em;
+}
+
+.reset-password-info {
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 3em;
+}
+
+@media screen and (max-width: 600px) {
+    .login-container {
+        width: 94% !important;
+        margin: auto !important;
+        left: 3% !important;
+        top: 30% !important;
+    }
+}
+
+@media screen and (max-width: 458px) {
+    .login-container {
+        top: 15% !important;
+    }
+
+    .login-wrapper .form-group label:not(.cbg label) {
+        display: block !important;
+    }
+
+    .login-wrapper .form-group input[type=text], .form-group input[type=password] {
+        width: 100% !important;
+    }
+}
+
+
+
+
+/* 
+    Sticky footer: http://tutorialzine.com/2016/03/quick-tip-the-best-way-to-make-sticky-footers/ VID TID: Detta funkar inte bra i IE. Det blir problem med bilder + max-width (containern behåller initiala höjden)
+        - Force the footer to always be at the bottom of the page
+*/

@@ -1,0 +1,84 @@
+﻿@using System.Web.Optimization
+@using FaroFiber.Core.Models.ViewModels
+@inherits UmbracoViewPage<MemberLoginViewModel>
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Login - Premo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+
+    <link rel="manifest" href="/app.webmanifest">
+    <script>(function (e, t, n) { var r = e.querySelectorAll("html")[0]; r.className = r.className.replace(/(^|\s)no-js(\s|$)/, "$1js$2") })(document, window, 0);</script>
+
+    @*@{ Html.RenderPartial("_Favicons");}*@
+    @Styles.Render("~/bundles/styles")
+    <script src="~/scripts/forgot-password.js"></script>
+
+    <!--[if lt IE 9]>
+        <script src="@Scripts.Url("~/bundles/ltIe9Scripts")"></script>
+    <![endif]-->
+</head>
+
+<body>
+    <div class="login-wrapper">
+
+        <div class="login-container">
+
+            @using (Html.BeginUmbracoForm("MemberLogin", "MemberLoginSurface"))
+            {
+                <fieldset>
+                    <legend>Logga in på <a class="heading__link" href="/">Premo intranät</a>!</legend>
+
+                    <div class="form-group">
+                        @Html.LabelFor(l => l.Username)
+                        @Html.TextBoxFor(m => m.Username)
+                        @Html.ValidationMessageFor(m => m.Username)
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(l => l.Password)
+                        @Html.PasswordFor(m => m.Password)
+                        @Html.ValidationMessageFor(m => m.Password)
+                    </div>
+
+                    <div class="form-group cbg">
+                        @Html.LabelFor(l => l.RememberMe)
+                        @Html.CheckBoxFor(m => Model.RememberMe)
+                    </div>
+
+                    <input type="submit" value="Logga in" />
+
+                    <p>@TempData["Status"]</p>
+                </fieldset>
+            }
+
+            <div class="reset-password-container">
+
+                @{
+                    var emailSent = TempData["EmailSent"] != null ? (bool)TempData["EmailSent"] : false;
+                    if (emailSent)
+                    {
+                        <p class="reset-password-info">Ett mail med instruktioner är skickat till din epost</p>
+                    }
+
+                    else
+                    {
+                        <a href="javascript:void(0);" id="forgot-password">Glömt lösenord</a>
+                    }
+                }
+
+                @*@{ Html.RenderPartial("_ResetPasswordForm", new ResetPasswordModel());}*@
+
+            </div>
+        </div>
+    </div>
+
+    <link href="~/css/login.css" rel="stylesheet" />
+
+</body>
+</html>

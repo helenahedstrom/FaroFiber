@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<language alias="en_us" intName="English (US)" localName="English (US)" lcid="" culture="en-US">
+	<area alias="login">
+		<key alias="greeting0">Camelonta AB</key>
+		<key alias="greeting1">Camelonta AB</key>
+		<key alias="greeting2">Camelonta AB</key>
+		<key alias="greeting3">Camelonta AB</key>
+		<key alias="greeting4">Camelonta AB</key>
+		<key alias="greeting5">Camelonta AB</key>
+		<key alias="greeting6">Camelonta AB</key>
+	</area>
+</language>

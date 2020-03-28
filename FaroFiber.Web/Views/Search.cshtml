@@ -1,0 +1,57 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.Search>
+@using FaroFiber.Core.Classes
+@using FaroFiber.Core.Classes.Search
+@using ContentModels = FaroFiber.Core.Models.GeneratedModels;
+@{
+	Layout = "~/Views/_Layout.cshtml";
+	var searchResults = new List<ISearchResult>();
+
+	var query = Request.QueryString["q"];
+	if (!string.IsNullOrEmpty(query))
+	{
+		var camelontaSearch = new CamelontaSearch();
+		searchResults = camelontaSearch.Search(query);
+	}
+}
+
+<div class="container">
+
+	<main role="main">
+		@RenderHelper.Header(Model)
+
+		<div class="search-results-container">
+
+			@if (searchResults != null && searchResults.Any())
+			{
+				foreach (var searchResult in searchResults)
+				{
+					var nodeId = searchResult.Id;
+					var page = Umbraco.Content(nodeId);
+					if (page != null)
+					{
+
+						if (page.IsDocumentType("site"))
+						{
+							continue;
+						}
+
+						var teaser = Meta.PageTeaser(page as ContentModels.ILayout, 180);
+
+						<a href="@page.Url" class="search-result">
+							<h3>@page.Name</h3>
+							<p>@teaser</p>
+						</a>
+					}
+				}
+			}
+			else
+			{
+				<div>
+					<h3>Inga sökresultat</h3>
+				</div>
+			}
+
+		</div>
+
+	</main>
+</div>

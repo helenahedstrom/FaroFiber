@@ -1,0 +1,17 @@
+﻿{
+  "gridEditors": [
+    {
+      "alias": "imageCard",
+      "name": "Image card",
+      "icon": "icon-pictures-alt-2",
+      "view": "~/App_Plugins/GridEditors/ImageCard/imageCard.html"
+    }
+  ],
+  "javascript": [
+    "~/App_Plugins/GridEditors/ImageCard/imageCard.js"
+  ],
+  "css": [
+    "~/App_Plugins/GridEditors/gridEditors.css"
+  ]
+  
+}

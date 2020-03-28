@@ -1,0 +1,23 @@
+﻿@using FaroFiber.Core.Models.DataModels
+@using FaroFiber.Core.Models.ViewModels
+@inherits UmbracoViewPage<FaroFiber.Core.Models.GeneratedModels.ILayout>
+@{
+	var viewModel = new LeftNavigationViewModel(Model);
+	var hide = string.Empty;
+	if (viewModel.Hide)
+	{
+		hide = "hide";
+	}
+}
+
+<section id="l-sidebar" class="@hide">
+	<nav id="left-nav" role="navigation" itemscope itemtype="http://schema.org/SiteNavigationElement">
+		@{ Html.RenderPartial("_MenuItems", new MenuItems
+			{
+				Pages = Model.HideInLeftNavigation ? Enumerable.Empty<IPublishedContent>() : viewModel.Items,
+				CurrentPage = Model,
+				Level = 1,
+				Type = "side"
+			}); }
+	</nav>
+</section>

@@ -1,0 +1,33 @@
+﻿@model FaroFiber.Core.Models.ContentModels.FlexiblePageContentModel
+@using System.Web.Mvc.Html
+@using FaroFiber.Core.Models.ViewModels
+@{
+	/**/
+
+	Layout = "~/Views/_Layout.cshtml";
+}
+
+@if (Model.ViewModel.InsideContainer || Model.ViewModel.HasRightColumn)
+{
+	<div class="container">
+		@PageContent()
+	</div>
+}
+else
+{
+	<div class="container one-col">
+		@PageContent()
+	</div>
+}
+
+@helper PageContent()
+{
+	/**/
+
+	Html.RenderPartial("~/Views/Partials/Layout/_LeftNav.cshtml");
+	Html.RenderPartial("~/Views/Partials/Layout/_RightColumnContent.cshtml", Model.Content.RightColumnContent);
+
+	<main role="main">
+		@Html.GetGridHtml(Model.Content, "grid", "Camelonta-Grid")
+	</main>
+}

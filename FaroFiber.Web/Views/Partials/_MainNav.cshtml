@@ -1,0 +1,18 @@
+﻿@using FaroFiber.Core.Classes
+@using FaroFiber.Core.Models.DataModels
+@using FaroFiber.Core.Models.ViewModels
+@inherits UmbracoViewPage<FaroFiber.Core.Models.GeneratedModels.ILayout>
+@{
+	var viewModel = new LayoutViewModel(Model);
+}
+
+<div class="main-nav">
+        <nav role="navigation" itemscope itemtype="http://schema.org/SiteNavigationElement">
+            @{ Html.RenderPartial("_MenuItems",new MenuItems
+                {
+                    Pages= viewModel.CurrentSite.Children.FilterInvalidPages(),
+                    CurrentPage = Model,
+                    Type = "main"
+                });}
+        </nav>
+</div>

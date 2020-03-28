@@ -1,0 +1,46 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.Home>
+@using ContentModels = FaroFiber.Core.Models.GeneratedModels
+@{
+	/**/
+
+	var root = Model.Ancestor<ContentModels.Site>();
+	Layout = "~/Views/_Layout.cshtml";
+}
+
+<main role="main">
+
+	@Html.GetGridHtml(Model, "grid", "Camelonta-Grid")
+
+</main>
+
+
+@*
+	- Schema.org -
+	Nicer results in search engines
+*@
+
+@if (!string.IsNullOrEmpty(root.OrgName))
+{
+	var socialMediaLinks = root.SocialMediaLinks.Split(new[] { "\r\n", "\n" }, StringSplitOptions.None);
+
+	<script type="application/ld+json">
+		{
+		"@@context": "http://schema.org",
+		"@@type": "Organization",
+		"name": "@Html.Raw(root.OrgName)",
+		"url":"@root.Url(null, UrlMode.Absolute)",
+		@* TODO: Kommentera bort detta och se till att sökvägen går till logotypen "logo":"@CurrentSite.UrlAbsolute()img/logo.png",*@
+		"description": "@Html.Raw(root.ShortDescriptionOfTheOrganization)",
+		"telephone": "@Html.Raw(root.PhoneNumber)",
+		"address":
+		{
+		"@@type": "PostalAddress",
+		"streetAddress": "@Html.Raw(root.Street)",
+		"addressLocality": "@Html.Raw(root.City)",
+		"postalCode": "@root.ZipCode",
+		"addressCountry": "@root.AreaCode)"
+		},
+		"sameAs" : [@Html.Raw(string.Join(",", socialMediaLinks.Select(l => $"\"{l}\"")))]
+		}
+	</script>
+}

@@ -1,0 +1,12 @@
+﻿// STYLES
+[data-bg="baby-blue"] {
+    background-color: #d6e7ef;
+
+    & p,h1,h2,h3,h4,h5{
+        color: #16505a;
+    }
+   
+}
+[data-bg="beige-transparent"] {
+    background-color: rgba(244, 242, 231, 0.5);
+}

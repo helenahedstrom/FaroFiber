@@ -1,0 +1,17 @@
+﻿[data-container-size="full"] {
+    .container {
+        width: 100%;
+        padding: 0;
+    }
+
+    .column {
+        padding: 0;
+        margin: 0;
+    }
+}
+
+.grid-section > [data-container-size="full"] {
+    padding: 0;
+}
+
+

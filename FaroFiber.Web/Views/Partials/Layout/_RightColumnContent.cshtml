@@ -1,0 +1,25 @@
+﻿@model IEnumerable<FaroFiber.Core.Models.GeneratedModels.RightColumnContent>
+
+@if (Model != null && Model.Any())
+{
+	<aside role="complementary">
+		<div class="aside-content">
+			@foreach (var item in Model)
+			{
+				var backgroundImage = item.BackgroundImage;
+				var backgroundImageUrl = backgroundImage != null ? backgroundImage.Url : string.Empty;
+				var whiteTextClass = item.WhiteText ? "white-text" : string.Empty;
+
+				<div class="aside-content__block @whiteTextClass" style="background-image: url('@backgroundImageUrl')">
+
+					@Html.Raw(item.TextContent.ToHtmlString())
+
+					@if (backgroundImage != null)
+					{
+						<img src="@backgroundImageUrl" alt="" style="visibility: hidden;"/>
+					}
+				</div>
+			}
+		</div>
+	</aside>
+}

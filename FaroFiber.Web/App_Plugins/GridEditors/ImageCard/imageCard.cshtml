@@ -1,0 +1,41 @@
+﻿@using Umbraco.Core.Models.PublishedContent
+@using FaroFiber.Core.Models.GeneratedModels
+@using FaroFiber.Core.Classes
+@using System.Globalization
+@using Umbraco.Core.Models.PublishedContent
+@using Umbraco.Web.Templates
+@inherits Umbraco.Web.Mvc.UmbracoViewPage<dynamic>
+
+
+@if (Model.card.link != null)
+{
+    foreach (var article in Model.card.list)
+    {
+        var id = (int)article.id;
+        IPublishedContent pageAsIpbulishedContent = Umbraco.Content(id);
+
+        if (pageAsIpbulishedContent.ContentType.Alias == "flexiblePage")
+        {
+            FlexiblePage page = (FlexiblePage)Umbraco.Content(id);
+
+            var heroImageUrl = page.HeroImage != null
+                     ? page.HeroImage.Url
+                     : Constants.FilesPath.DefaultSocialSharingImage;
+
+            <div class="col-12 col-md-4 mb-3">
+                <div class="card card--news card--full-height">
+                    <div class="card-image-container">
+                        <img src="@article.HeroImage" class="card-img-top" />
+                        <span class="card-banner">@article.DisplayDate.ToString("d/M-yy", CultureInfo.InvariantCulture)</span>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">@article.Name</h3>
+                        <p class="card-text line-clamp-3">@article.Teaser</p>
+                        <a href="@article.Url" title="Läs @article.Name" class="card-page-link">Läs artikel</a>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+}
+

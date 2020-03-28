@@ -1,0 +1,10 @@
+﻿@using FaroFiber.Core.Models.ViewModels
+@model LayoutViewModel
+
+@if (Model.SearchPage != null)
+{
+    <form class="search-form" action="@Model.SearchPage.Url" itemprop="potentialAction" itemscope itemtype="http://schema.org/SearchAction">
+        <input class="search-form__input" type="search" name="q" itemprop="query-input" placeholder="@Model.SearchPage.Name" autocomplete="off" value="@Request.QueryString["q"]" />
+        <button><i class="icon-search"></i></button>
+    </form>
+}
