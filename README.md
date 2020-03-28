@@ -1,2 +1,2 @@
-# Umbraco.Boilerplate_v3
-Camelonta Boilerplate based on Umbraco v8
+# Fårö fiber
+The project is based on Umbraco v8
